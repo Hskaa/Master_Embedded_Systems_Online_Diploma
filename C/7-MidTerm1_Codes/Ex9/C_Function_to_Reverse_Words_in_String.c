@@ -1,50 +1,54 @@
 #include <stdio.h>
 #include <string.h>
-// quoted**
+
 int main()
 {
-    char str[100], reverse[100];
-    int len, i, index, wordStart, wordEnd;
+    char input[100], reversedWords[100];
+    int length, pos, start, end, wordBegin, wordFinish;
 
     printf("Enter any string: ");
-    gets(str);
+    fgets(input, sizeof(input), stdin);  // Use fgets for safer input
 
-    len = strlen(str);
-    index = 0;
+    length = strlen(input);
+    
+    // Remove newline character from fgets input
+    if (input[length - 1] == '\n') {
+        input[length - 1] = '\0';
+        length--;
+    }
 
-    wordStart = len - 1;
-    wordEnd = len - 1;
+    pos = 0;
+    wordBegin = length - 1;
+    wordFinish = length - 1;
 
-    while(wordStart > 0)
+    while (wordBegin >= 0)
     {
-        if(str[wordStart] == ' ')
+        if (input[wordBegin] == ' ')
         {
-            i = wordStart + 1;
-            while(i <= wordEnd)
+            int k = wordBegin + 1;
+            while (k <= wordFinish)
             {
-                reverse[index] = str[i];
-
-                i++;
-                index++;
+                reversedWords[pos] = input[k];
+                k++;
+                pos++;
             }
-            reverse[index++] = ' ';
-
-            wordEnd = wordStart - 1;
+            reversedWords[pos++] = ' ';
+            wordFinish = wordBegin - 1;
         }
-
-        wordStart--;
+        wordBegin--;
     }
 
-    for(i=0; i<=wordEnd; i++)
+    // Add the first word
+    for (int j = 0; j <= wordFinish; j++)
     {
-        reverse[index] = str[i];
-        index++;
+        reversedWords[pos] = input[j];
+        pos++;
     }
 
-    reverse[index] = '\0';
+    reversedWords[pos] = '\0';
 
-    printf("Original string \n%s\n\n", str);
-    printf("Reverse ordered words \n%s", reverse);
+    printf("Original string \n%s\n\n", input);
+    printf("Reverse ordered words \n%s", reversedWords);
 
     return 0;
 }

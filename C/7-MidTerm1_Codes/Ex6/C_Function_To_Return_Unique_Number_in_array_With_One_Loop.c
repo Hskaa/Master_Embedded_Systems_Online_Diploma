@@ -2,43 +2,43 @@
 
 int main()
 {
-    int arr[10], freq[10];
-    int size, i, j, count;
+    int numbers[10], frequency[10];
+    int arraySize, outerIndex, innerIndex, occurrence;
 
     printf("Enter size of array: ");
-    scanf("%d", &size);
+    scanf("%d", &arraySize);
 
     printf("Enter elements in array: ");
-    for(i=0; i<size; i++)
+    for (outerIndex = 0; outerIndex < arraySize; outerIndex++)
     {
-        scanf("%d", &arr[i]);
-        freq[i] = -1;
+        scanf("%d", &numbers[outerIndex]);
+        frequency[outerIndex] = -1;  // Initialize frequency array
     }
 
-    for(i=0; i<size; i++)
+    for (outerIndex = 0; outerIndex < arraySize; outerIndex++)
     {
-        count = 1;
-        for(j=i+1; j<size; j++)
+        occurrence = 1;
+        for (innerIndex = outerIndex + 1; innerIndex < arraySize; innerIndex++)
         {
-            if(arr[i] == arr[j])
+            if (numbers[outerIndex] == numbers[innerIndex])
             {
-                count++;
-                freq[j] = 0;
+                occurrence++;
+                frequency[innerIndex] = 0;  // Mark duplicate as counted
             }
         }
 
-        if(freq[i] != 0)
+        if (frequency[outerIndex] != 0)
         {
-            freq[i] = count;
+            frequency[outerIndex] = occurrence;  // Record occurrences if not marked
         }
     }
 
     printf("\nUnique elements in the array are: ");
-    for(i=0; i<size; i++)
+    for (outerIndex = 0; outerIndex < arraySize; outerIndex++)
     {
-        if(freq[i] == 1)
+        if (frequency[outerIndex] == 1)
         {
-            printf("%d ", arr[i]);
+            printf("%d ", numbers[outerIndex]);  // Print unique elements
         }
     }
 

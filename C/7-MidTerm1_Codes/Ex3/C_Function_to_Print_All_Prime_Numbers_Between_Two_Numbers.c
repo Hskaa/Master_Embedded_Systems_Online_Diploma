@@ -1,27 +1,27 @@
 #include <stdio.h>
 
-int main ()
-{
-   int num1, num2, i, j, flag;
+int main() {
+    int lower, upper, num, divisor, isPrime;
 
-   printf("Enter two numbers: ");
-   scanf("%d %d", &num1, &num2);
+    printf("Enter two numbers: ");
+    scanf("%d %d", &lower, &upper);
 
-   printf("Prime numbers between %d and %d are:\n", num1, num2);
+    printf("Prime numbers between %d and %d are:\n", lower, upper);
 
-   for (i = num1 + 1; i < num2; ++i)
-   {
-      flag = 0;
-      for (j = 2; j <= i/2; ++j)
-      {
-         if (i % j == 0)
-         {
-            flag = 1;
-            break;
-         }
-      }
-      if (flag == 0)
-          printf("%d ", i);
-   }
-   return 0;
+    for (num = lower + 1; num < upper; ++num) {
+        isPrime = 1;  // Assume the current number is prime
+
+        for (divisor = 2; divisor <= num / 2; ++divisor) {
+            if (num % divisor == 0) {
+                isPrime = 0;  // Not prime if divisible by any divisor
+                break;
+            }
+        }
+
+        if (isPrime) {
+            printf("%d ", num);  // Print the number if it is prime
+        }
+    }
+
+    return 0;
 }

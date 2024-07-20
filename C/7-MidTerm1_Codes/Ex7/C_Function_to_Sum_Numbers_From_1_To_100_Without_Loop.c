@@ -1,22 +1,22 @@
 #include <stdio.h>
 
-int i = 0;
-int sum = 0;
+int counter = 0;
+int totalSum = 0;
 
 int main()
 {
-	if (i <= 100)
-	{
-		sum += i;
-		i++;
-		main();
-	}
+    if (counter <= 100)
+    {
+        totalSum += counter;
+        counter++;
+        main();  // Recursively call main() to continue summing
+    }
 
-	if (i==101)
-	{
-		printf("\nSum of Numbers from 0 to 100 is: %d ", sum);
-		i= 102;
-	}
+    if (counter == 101)
+    {
+        printf("\nSum of Numbers from 0 to 100 is: %d ", totalSum);
+        counter = 102;  // Ensure the message is printed only once
+    }
 
-	return 0;
+    return 0;
 }

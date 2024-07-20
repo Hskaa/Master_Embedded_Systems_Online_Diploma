@@ -1,25 +1,27 @@
 #include <stdio.h>
 
-unsigned int countSetBits(unsigned int n);
+unsigned int calculateSetBits(unsigned int number);
 
 int main()
 {
-    int i;
+    int inputNumber;
 
     printf("Enter any number: ");
-    scanf("%d", &i);
+    scanf("%d", &inputNumber);
 
-    printf("%d", countSetBits(i));
+    printf("%d", calculateSetBits(inputNumber));
     return 0;
 }
 
-unsigned int countSetBits(unsigned int n)
+unsigned int calculateSetBits(unsigned int number)
 {
-	unsigned int count = 0;
-	while (n)
-	{
-		count += n & 1;
-		n >>= 1;
-	}
-	return count;
+    unsigned int bitCount = 0;
+    
+    while (number != 0)
+    {
+        bitCount += number & 1;  // Add the least significant bit to bitCount
+        number >>= 1;            // Shift bits to the right to process the next bit
+    }
+    
+    return bitCount;
 }

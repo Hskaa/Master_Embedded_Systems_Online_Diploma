@@ -2,16 +2,16 @@
 
 int main()
 {
-    int num, remainder, sum = 0;
+    int num, digit, sum = 0;
 
     printf("Enter a number: ");
     scanf("%d", &num);
 
     while(num != 0)
     {
-        remainder = num % 10;
-        sum += remainder;
-        num = num / 10;
+        digit = num % 10;  // Extract the last digit
+        sum += digit;      // Add the digit to the sum
+        num = num / 10;    // Remove the last digit from the number
     }
 
     printf("sum = %d", sum);

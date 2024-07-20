@@ -2,22 +2,22 @@
 
 int main()
 {
-    int arr[10];
-    int size, i;
+    int numbers[10];
+    int numElements, index;
 
     printf("Enter size of the array: ");
-    scanf("%d", &size);
+    scanf("%d", &numElements);
 
     printf("Enter elements in array: ");
-    for(i=0; i<size; i++)
+    for (index = 0; index < numElements; index++)
     {
-        scanf("%d", &arr[i]);
+        scanf("%d", &numbers[index]);
     }
 
     printf("\nArray in reverse order: ");
-    for(i = size-1; i>=0; i--)
+    for (index = numElements - 1; index >= 0; index--)
     {
-        printf("%d ", arr[i]);
+        printf("%d ", numbers[index]);
     }
 
     return 0;

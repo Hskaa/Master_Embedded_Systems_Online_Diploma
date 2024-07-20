@@ -1,46 +1,47 @@
 #include <stdio.h>
 
-int OnesCounter (int number);
-//qouted
+int CountConsecutiveOnes(int value);
 
-int main ()
+int main()
 {
-	int number;
+    int inputNumber;
 
-	printf("Enter an integer number in decimal format: ");
-	scanf("%d", &number);
+    printf("Enter an integer number in decimal format: ");
+    scanf("%d", &inputNumber);
 
-	printf("\nThe entered number is: %d, and maximum number of One-digits is %d.", number, OnesCounter(number));
+    printf("\nThe entered number is: %d, and maximum number of consecutive One-digits is %d.", inputNumber, CountConsecutiveOnes(inputNumber));
 
-	return 0;
+    return 0;
 }
 
-
-int OnesCounter (int number)
+int CountConsecutiveOnes(int value)
 {
-	int newNumber, counter=0, numOfIntegerBits = 31, numberOfOnes=0;
+    int shiftedValue, currentStreak = 0, maxStreak = 0, bitPosition = 31;
 
-	for (; numOfIntegerBits >= 0; numOfIntegerBits--)
-	{
-		newNumber = number >> numOfIntegerBits;
+    while (bitPosition >= 0)
+    {
+        shiftedValue = value >> bitPosition;
 
-		if (newNumber & 1)
-		{
-			counter++;
-		}
-		else
-		{
-			if(counter>numberOfOnes)
-			{
-				numberOfOnes = counter ;
-				counter = 0;
-			}
-			else
-			{
-				counter=0;
-			}
-		}
-	}
-	return numberOfOnes;
+        if (shiftedValue & 1)
+        {
+            currentStreak++;
+        }
+        else
+        {
+            if (currentStreak > maxStreak)
+            {
+                maxStreak = currentStreak;
+            }
+            currentStreak = 0;
+        }
+        bitPosition--;
+    }
 
+    // Final check in case the longest streak ends at the last bit
+    if (currentStreak > maxStreak)
+    {
+        maxStreak = currentStreak;
+    }
+
+    return maxStreak;
 }
